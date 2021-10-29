@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box-Animation</title>
+
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        position: absolute;
+        margin: auto;
+        background-color: whitesmoke;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-top: 30px;
+      }
+      .graph {
+        border: 9px solid black;
+        background-color: black;
+        width: 500px;
+        height: 200px;
+        margin: auto;
+        display: flex;
+        justify-content: end;
+        align-items: flex-end;
+      }
+      .bar {
+        width: 100px;
+      }
+      .button-container {
+        text-align: center;
+        padding: 30px;
+        margin: 10px;
+      }
+      .button {
+        padding: 20px;
+        margin: 20px;
+        font-size: large;
+        font-weight: bold;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        border: 1px solid black;
+      }
+
+      #start {
+        background-color: green;
+      }
+
+      #stop {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="graph">
+        <div class="bar" style="height: 200px; background-color: #4b6587"></div>
+        <div class="bar" style="height: 200px; background-color: #c8c6c6"></div>
+        <div class="bar" style="height: 200px; background-color: #f7f6f2"></div>
+        <div class="bar" style="height: 200px; background-color: #f0e5cf"></div>
+        <div class="bar" style="height: 200px; background-color: #5f7a61"></div>
+      </div>
+      <div class="button-container">
+        <button class="button" id="start">Start</button>
+        <button class="button" id="stop">End</button>
+      </div>
+    </div>
+    <script>
+      var startButton = document.getElementById("start");
+      var stopButton = document.getElementById("stop");
+      var activity;
+
+      startButton.addEventListener("click", function () {
+        clearInterval(activity);
+        activity = setInterval(function () {
+          startAnagram();
+        }, 600);
+      });
+
+      stopButton.addEventListener("click", function () {
+        clearInterval(activity);
+      });
+
+      function startAnagram() {
+        var bars = document.getElementsByClassName("bar");
+        for (let i = 0; i < bars.length; i++) {
+          let newHeight = createRandomNumber();
+          bars[i].style.height = newHeight + "px";
+        }
+      }
+
+      function createRandomNumber() {
+        return Math.floor(Math.random() * 201);
+      }
+    </script>
+  </body>
+</html>
